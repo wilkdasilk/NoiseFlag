@@ -21,3 +21,6 @@ node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
+
+# react_on_rails helpful things
+client/REACT_ON_RAILS_CLIENT_README.md
