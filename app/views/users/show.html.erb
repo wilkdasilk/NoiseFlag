@@ -1,0 +1,6 @@
+<div>
+  <h3><%= @user.name %></h3>
+  <p><%= @user.current_city %></p>
+  <p>Noisy since <%= @user.created_at.strftime("%B %d, %Y") %></p>
+  <%= button_to "Edit", edit_user_registration_path, method: "get" %>
+</div>
