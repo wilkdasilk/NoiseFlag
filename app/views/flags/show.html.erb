@@ -1,0 +1,15 @@
+<h3>
+  <%= @flag.name %>
+</h3>
+
+<p>
+  <strong>Host:</strong>
+  <%= @flag.user.name %>
+</p>
+
+<p>
+  <%= @flag.description %>
+</p>
+
+<%= link_to 'Edit', edit_flag_path(@flag) %> |
+<%= link_to 'Back', flags_path %>

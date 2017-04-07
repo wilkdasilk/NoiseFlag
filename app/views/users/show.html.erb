@@ -4,3 +4,13 @@
   <p>Noisy since <%= @user.created_at.strftime("%B %d, %Y") %></p>
   <%= button_to "Edit", edit_user_registration_path, method: "get" %>
 </div>
+
+<div>
+  <% if !@user.flags.empty? %>
+    <h5><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</h5>
+    <% @user.flags.each do |flag| %>
+      <div><%= link_to "Flag", flag_path(flag) %></div>
+    <% end %>
+  <% end %>
+  <%= link_to "Plant a Flag!", new_flag_path %>
+</div>

@@ -1,0 +1,7 @@
+<h1>Editing Flag</h1>
+
+<%= render 'form', flag: @flag %>
+<%= link_to 'Delete', flag_path(@flag), method: 'delete' %>
+
+<%= link_to 'Show', @flag %> 
+<%= link_to 'Back', flags_path %>
