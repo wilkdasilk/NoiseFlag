@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :flags
   root to: "splash#index"
 
   # User routes
