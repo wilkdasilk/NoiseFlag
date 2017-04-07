@@ -9,6 +9,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <% if true %>
+          <%= link_to "Login", root_path %>
+          <%= link_to "Sign Up", root_path %>
+        <% else %>
+          <%= link_to "My Profile", root_path %>
+          <%= link_to "Logout", root_path %>
+        <% end %>
+      </nav>
+      <div class="errors">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <h1>Noise Flag</h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
