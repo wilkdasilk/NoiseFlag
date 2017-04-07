@@ -4,6 +4,7 @@ class FlagsController < ApplicationController
   # GET /flags
   # GET /flags.json
   def index
+    redirect_to splash_path unless current_user
     @flags = Flag.all
   end
 
@@ -24,10 +25,10 @@ class FlagsController < ApplicationController
   # POST /flags
   # POST /flags.json
   def create
-    @flag = Flag.new(flag_params)
+    @flag = current_user.flags.create(flag_params)
 
     respond_to do |format|
-      if @flag.save
+      if @flag.valid?
         format.html { redirect_to @flag, notice: 'Flag was successfully created.' }
         format.json { render :show, status: :created, location: @flag }
       else
