@@ -23,4 +23,9 @@ node_modules
 /app/assets/webpack/*
 
 # react_on_rails helpful things
-client/REACT_ON_RAILS_CLIENT_README.md
+/client/REACT_ON_RAILS_CLIENT_README.md
+
+# HelloWorld docs
+/client/app/bundles/HelloWorld/*
+/app/views/hello_world/*
+/app/controllers/hello_world_controller.rb
