@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :flags
   root to: "flags#index"
-
   get "/welcome", to: "splash#index", as: "splash"
+
+  constraints subdomain: "api" do
+    get "/tracks", to: "tracks#search", as: "tracks", :defaults => {:format => 'json'}
+  end
+
+  resources :flags
+
 
   # User routes
   # Why custom registrations? To handle additional user fields: http://jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html

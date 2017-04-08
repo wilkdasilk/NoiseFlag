@@ -11,6 +11,7 @@ class FlagsController < ApplicationController
   # GET /flags/1
   # GET /flags/1.json
   def show
+    
   end
 
   # GET /flags/new

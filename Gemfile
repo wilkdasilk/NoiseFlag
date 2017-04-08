@@ -35,8 +35,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'geocoder'
 gem 'devise'
 gem 'omniauth-spotify'
-gem "figaro"
-gem "react_on_rails", "~> 6"
+gem 'figaro'
+gem 'react_on_rails', '~> 6'
+gem 'searchkick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
