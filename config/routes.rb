@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "flags#index"
   get "/welcome", to: "splash#index", as: "splash"
 
-  constraints subdomain: "api" do
+  namespace :api do
     get "/tracks", to: "tracks#search", as: "tracks", :defaults => {:format => 'json'}
   end
 

@@ -16,3 +16,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('form').on('submit', function(e) {
+    e.preventDefault();
+    console.log("I'm submitting");
+    $.ajax({
+      url: $('.search-tracks-btn').attr('ajax-path'),
+      data: $('form').serialize(),
+      async: true,
+      method: 'GET',
+      success: onSuccess
+    })
+  });
+  function onSuccess(res) {
+    console.log(res);
+  }
+});

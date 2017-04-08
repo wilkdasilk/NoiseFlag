@@ -1,4 +1,4 @@
-class TracksController < ApplicationController
+class API::TracksController < ApplicationController
 
   def search
     query = params[:q]
