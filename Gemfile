@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'dotenv-rails', groups: [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
@@ -38,6 +38,7 @@ gem 'omniauth-spotify'
 gem 'figaro'
 gem 'react_on_rails', '~> 6'
 gem 'searchkick'
+gem 'httparty', '~> 0.13.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

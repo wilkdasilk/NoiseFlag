@@ -4,7 +4,7 @@
 
 <p>
   <strong>Host:</strong>
-  <%= @flag.user.name %>
+  <%= link_to @flag.user.name, user_path(@flag.user) %>
 </p>
 
 <p>
