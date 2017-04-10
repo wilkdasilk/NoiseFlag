@@ -7,10 +7,14 @@
 
 <div>
   <% if !@user.flags.empty? %>
-    <h5><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</h5>
-    <% @user.flags.each do |flag| %>
-      <div><%= link_to "Flag", flag_path(flag) %></div>
-    <% end %>
+    <div>
+      <h5><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</h5>
+      <% @user.flags.each do |flag| %>
+        <div><%= link_to flag.name, flag_path(flag) %></div>
+      <% end %>
+    </div><br />
   <% end %>
-  <%= link_to "Plant a Flag!", new_flag_path %>
+  <div>
+    <%= link_to "Plant a Flag!", new_flag_path %>
+  </div>
 </div>

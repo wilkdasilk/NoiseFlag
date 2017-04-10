@@ -1,5 +1,6 @@
 class FlagsController < ApplicationController
   before_action :set_flag, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_location
 
   # GET /flags
   # GET /flags.json
@@ -11,7 +12,7 @@ class FlagsController < ApplicationController
   # GET /flags/1
   # GET /flags/1.json
   def show
-    
+
   end
 
   # GET /flags/new
@@ -27,9 +28,11 @@ class FlagsController < ApplicationController
   # POST /flags.json
   def create
     @flag = current_user.flags.create(flag_params)
+    @flag.latitude = current_user.latitude
+    @flag.longitude = current_user.longitude
 
     respond_to do |format|
-      if @flag.valid?
+      if @flag.save
         format.html { redirect_to @flag, notice: 'Flag was successfully created.' }
         format.json { render :show, status: :created, location: @flag }
       else
@@ -72,5 +75,15 @@ class FlagsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def flag_params
       params.require(:flag).permit(:name, :description, :user_id)
+    end
+
+    def set_user_location
+      if cookies[:lat_lng]
+        location = cookies[:lat_lng].split("|")
+        current_user.latitude = location[0]
+        current_user.longitude = location[1]
+        current_user.last_ping_time = DateTime.now()
+        cookies.delete :lat_lng
+      end
     end
 end

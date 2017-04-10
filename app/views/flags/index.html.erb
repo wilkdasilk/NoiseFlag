@@ -1,3 +1,11 @@
+<% unless have_recent_location? %>
+  <script>
+  $(document).on('turbolinks:load', function() {
+    getGeoLocation();
+  });
+  </script>
+<% end %>
+
 <h1>Flags</h1>
 
 <table>

@@ -29,7 +29,21 @@ $(document).on('turbolinks:load', function() {
       success: onSuccess
     })
   });
+
   function onSuccess(res) {
     console.log(res);
   }
+
 });
+
+//for setting user geolocation
+function getGeoLocation() {
+  navigator.geolocation.getCurrentPosition(setGeoCookie);
+}
+
+function setGeoCookie(position) {
+  var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
+  document.cookie = "lat_lng=" + escape(cookie_val);
+  //reload the page with full location functionality
+  location.reload(true);
+}

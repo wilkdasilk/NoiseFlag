@@ -15,50 +15,45 @@ auston = User.create!(
     current_city: "SF",
     email: "auston@me.com",
     password: "yeahyeah",
-    password_confirmation: "yeahyeah"
+    password_confirmation: "yeahyeah",
+    latitude: 37.790882,
+    longitude: -122.401552
 )
 superman = User.create!(
     name: "Superman",
     current_city: "New York",
     email: "superman@me.com",
     password: "nonono",
-    password_confirmation: "nonono"
+    password_confirmation: "nonono",
+    latitude: 40.748541,
+    longitude: -73.985758
 )
 batman = User.create!(
     name: "Batman",
     current_city: "NYC",
     email: "batman@me.com",
     password: "iambatman",
-    password_confirmation: "iambatman"
+    password_confirmation: "iambatman",
+    latitude: 40.706086,
+    longitude: -73.996864
+)
+auston.flags.create!(
+  name: "GA Radness",
+  description: "Only the most radical tunes. Gimme your 90s!",
+  latitude: 37.790882,
+  longitude: -122.401552
 )
 batman.flags.create!(
     name: "Magic",
     description: "This is where it happens! All that glitters is gold. Smash Mouth tunes welcome",
+    latitude: 40.706086,
+    longitude: -73.996864
 )
 superman.flags.create!(
   name: "Sammy's Spot",
   description: "Everything awesome welcome. Unless I don't like it",
-)
-Track.create!(
-  name: "This Charming Man - 2011 Remastered Version",
-  artist: "The Smiths",
-  album: "The Smiths",
-  image_url: "https://i.scdn.co/image/f2b54f97eef229fe4757a008c5caa2aff1496530",
-  spotify_id: "1FvDJ9KGxcqwv1utyPL3JZ"
-)
-Track.create!(
-  name: "There Is A Light That Never Goes Out - 2011 Remastered Version",
-  artist: "The Smiths",
-  album: "The Queen Is Dead",
-  image_url: "https://i.scdn.co/image/df20f7f7b4c8bf3e11fb043125a9b94d6a61967b",
-  spotify_id: "0WQiDwKJclirSYG9v5tayI"
-)
-Track.create!(
-  name: "Please, Please, Please Let Me Get What I Want - 2011 Remastered Version",
-  artist: "The Smiths",
-  album: "Hatful of Hollow",
-  image_url: "https://i.scdn.co/image/3c17736bf01eb170161e3a5bee168df3588c001f",
-  spotify_id: "6BrMEbPSSj55nQhkgf6DnE"
+  latitude: 40.748541,
+  longitude: -73.985758
 )
 
 # for searchkick gem
