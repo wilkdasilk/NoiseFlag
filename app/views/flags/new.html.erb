@@ -1,4 +1,4 @@
-<% unless current_user.latitude && current_user.longitude && current_user.last_ping_time < 30.seconds.ago %>
+<% unless have_current_location? %>
   <script>
   $(document).on('turbolinks:load', function() {
     getGeoLocation();

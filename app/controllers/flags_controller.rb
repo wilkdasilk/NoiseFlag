@@ -28,9 +28,11 @@ class FlagsController < ApplicationController
   # POST /flags.json
   def create
     @flag = current_user.flags.create(flag_params)
+    @flag.latitude = current_user.latitude
+    @flag.longitude = current_user.longitude
 
     respond_to do |format|
-      if @flag.valid?
+      if @flag.save
         format.html { redirect_to @flag, notice: 'Flag was successfully created.' }
         format.json { render :show, status: :created, location: @flag }
       else
