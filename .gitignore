@@ -29,3 +29,4 @@ node_modules
 /client/app/bundles/HelloWorld/*
 /app/views/hello_world/*
 /app/controllers/hello_world_controller.rb
+/.env
