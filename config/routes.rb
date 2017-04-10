@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :flags
-  post "flags/:flag_id/entries", to: "entries#create", as: "entries"
+  post "/flags/:flag_id/entries", to: "entries#create", as: "entries"
+  post "/flags/:flag_id/checkins", to: "checkins#create", as: "checkins"
 
 
   # User routes
