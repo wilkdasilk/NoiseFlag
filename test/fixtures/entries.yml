@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: 1
+  track: one
+  flag: one
+  user: one
+
+two:
+  position: 1
+  track: two
+  flag: two
+  user: two

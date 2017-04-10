@@ -18,7 +18,7 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-  $('form').on('submit', function(e) {
+  $('form.search-tracks').on('submit', function(e) {
     e.preventDefault();
     console.log("I'm submitting");
     $.ajax({

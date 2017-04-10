@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   root to: "flags#index"
   get "/welcome", to: "splash#index", as: "splash"
 
+  # from https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
+  post 'auth_user' => 'authentication#authenticate_user'
+
   namespace :api do
     get "/tracks", to: "tracks#search", as: "tracks", :defaults => {:format => 'json'}
   end
 
   resources :flags
+  post "flags/:flag_id/entries", to: "entries#create", as: "entries", :defaults => {:format => 'json'}
 
 
   # User routes

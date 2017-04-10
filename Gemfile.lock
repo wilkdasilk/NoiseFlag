@@ -232,6 +232,7 @@ DEPENDENCIES
   httparty (~> 0.13.7)
   jbuilder (~> 2.5)
   jquery-rails
+  jwt
   listen (~> 3.0.5)
   mini_racer
   omniauth-spotify
