@@ -1,4 +1,4 @@
-<% unless have_current_location? %>
+<% if !have_current_location? %>
   <script>
   $(document).on('turbolinks:load', function() {
     getGeoLocation();

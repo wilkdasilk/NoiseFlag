@@ -6,6 +6,31 @@ class ApplicationController < ActionController::Base
     @flag = Flag.find_by_id(flag_id)
   end
 
+  private
+
+  def set_user_location
+    if params[:lat] && params[:lon]
+        current_user.update({
+        latitude: params[:lat].to_f,
+        longitude: params[:lon].to_f,
+        last_ping_time: DateTime.now().utc
+        })
+      # current_user.latitude = location[0]
+      # current_user.longitude = location[1]
+      # current_user.last_ping_time = DateTime.now().change(:offset =>"+0000")
+      # current_user.save
+      checkout unless user_nearby?(current_user.active_checkin)
+    end
+  end
+
+  def user_nearby?(flag)
+    Flag.near([current_user.latitude, current_user.longitude], 0.5, :units => :mi).include?(flag)
+  end
+
+  def checkout
+    current_user.active_checkin.inactive! if !!current_user.active_checkin
+  end
+
   #from https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
   # attr_reader :current_user
   #
