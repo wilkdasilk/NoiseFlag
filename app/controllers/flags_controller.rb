@@ -12,7 +12,7 @@ class FlagsController < ApplicationController
   # GET /flags/1
   # GET /flags/1.json
   def show
-
+    
   end
 
   # GET /flags/new
@@ -77,14 +77,4 @@ class FlagsController < ApplicationController
       params.require(:flag).permit(:name, :description, :user_id)
     end
 
-    def set_user_location
-      if cookies[:lat_lng]
-        location = cookies[:lat_lng].split("|")
-        current_user.latitude = location[0]
-        current_user.longitude = location[1]
-        current_user.last_ping_time = DateTime.now().change(:offset =>"+0000")
-        current_user.save
-        cookies.delete :lat_lng
-      end
-    end
 end

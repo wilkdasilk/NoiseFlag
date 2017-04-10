@@ -38,12 +38,14 @@ $(document).on('turbolinks:load', function() {
 
 //for setting user geolocation
 function getGeoLocation() {
-  navigator.geolocation.getCurrentPosition(setGeoCookie);
+  navigator.geolocation.getCurrentPosition(setGeoQuery);
 }
 
-function setGeoCookie(position) {
-  var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
-  document.cookie = "lat_lng=" + escape(cookie_val);
+function setGeoQuery(position) {
   //reload the page with full location functionality
-  location.reload(true);
+  var base_url = location.href;
+  if (base_url.substring(-1) =="/") {
+    base_url = base_url.substring(0, base_url.length -1);
+  }
+  window.location.replace(base_url + `?lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
 }
