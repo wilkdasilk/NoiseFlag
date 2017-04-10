@@ -1,3 +1,11 @@
+<% if !have_recent_location? %>
+  <script>
+  $(document).on('turbolinks:load', function() {
+    getGeoLocation();
+  });
+  </script>
+<% end %>
+
 <h3>
   <%= @flag.name %>
 </h3>
@@ -10,6 +18,13 @@
 <p>
   <%= @flag.description %>
   <div><%= @flag.address %></div>
+  <div>
+    <% if !user_checked_in?(@flag) && user_near_flag?(@flag)%>
+      <%= link_to "Check in", checkins_path(@flag), method: "post" %>
+    <% elsif user_checked_in?(@flag)%>
+      Checked in!
+    <% end %>
+  </div>
 </p>
 
 <%= render "search_tracks" %>

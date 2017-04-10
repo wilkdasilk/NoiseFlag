@@ -82,7 +82,8 @@ class FlagsController < ApplicationController
         location = cookies[:lat_lng].split("|")
         current_user.latitude = location[0]
         current_user.longitude = location[1]
-        current_user.last_ping_time = DateTime.now()
+        current_user.last_ping_time = DateTime.now().change(:offset =>"+0000")
+        current_user.save
         cookies.delete :lat_lng
       end
     end

@@ -2,8 +2,7 @@ class EntriesController < ApplicationController
   #  before_filter :authenticate_request!
 
    def create
-     flag_id = params[:flag_id]
-     @flag = Flag.find_by_id(flag_id)
+     set_flag_by_id
      @entry = current_user.entries.create(entry_params)
      @flag.entries << @entry
      respond_to do |format|

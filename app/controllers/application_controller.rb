@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def set_flag_by_id
+    flag_id = params[:flag_id]
+    @flag = Flag.find_by_id(flag_id)
+  end
+
   #from https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
   # attr_reader :current_user
   #
