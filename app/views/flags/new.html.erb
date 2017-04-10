@@ -1,3 +1,11 @@
+<% unless current_user.latitude && current_user.longitude && current_user.last_ping_time < 30.seconds.ago %>
+  <script>
+  $(document).on('turbolinks:load', function() {
+    getGeoLocation();
+  });
+  </script>
+<% end %>
+
 <h1>New Flag</h1>
 
 <%= render 'form', flag: @flag %>

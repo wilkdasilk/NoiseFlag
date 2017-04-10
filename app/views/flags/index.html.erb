@@ -1,3 +1,11 @@
+<% unless current_user.latitude && current_user.longitude && current_user.last_ping_time < 2.minutes.ago %>
+  <script>
+  $(document).on('turbolinks:load', function() {
+    getGeoLocation();
+  });
+  </script>
+<% end %>
+
 <h1>Flags</h1>
 
 <table>
