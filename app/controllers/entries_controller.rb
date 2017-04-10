@@ -8,9 +8,9 @@ class EntriesController < ApplicationController
      @flag.entries << @entry
      respond_to do |format|
       if @flag.save
-        format.json { render entry: @entry, status: :created }
+        format.html { redirect_to @flag, notice: "Track entered successfully!" }
       else
-        format.json { render json: @flag.errors, status: :unprocessable_entity }
+        format.html { redirect_to @flag, notice: "Could not add track" }
       end
     end
    end

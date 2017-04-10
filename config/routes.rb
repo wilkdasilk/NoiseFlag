@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :flags
-  post "flags/:flag_id/entries", to: "entries#create", as: "entries", :defaults => {:format => 'json'}
+  post "flags/:flag_id/entries", to: "entries#create", as: "entries"
 
 
   # User routes
