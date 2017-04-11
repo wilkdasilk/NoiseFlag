@@ -1,4 +1,7 @@
 <div>
   <h5>"<%= track.name %>" by <%= track.artist %></h5>
   <h6><%= track.album %></h6>
+  <% if !!entry && current_user == entry.flag.user %>
+    <%= link_to "Remove track", entry_path(entry), method: "delete" %>
+  <% end %>
 </div>

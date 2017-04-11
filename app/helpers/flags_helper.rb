@@ -5,7 +5,7 @@ module FlagsHelper
   end
 
   def have_current_location?
-    current_user.latitude && current_user.longitude && !!current_user.last_ping_time && current_user.last_ping_time >= 30.seconds.ago.utc
+    current_user.latitude && current_user.longitude && !!current_user.last_ping_time && current_user.last_ping_time >= 1.minute.ago.utc
   end
 
   def markers_string(flags)
