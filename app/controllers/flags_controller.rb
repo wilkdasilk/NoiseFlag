@@ -1,12 +1,12 @@
 class FlagsController < ApplicationController
+  before_action :require_login
   before_action :set_flag, only: [:show, :edit, :update, :destroy]
   before_action :set_user_location
 
   # GET /flags
   # GET /flags.json
   def index
-    redirect_to splash_path unless current_user
-    @flags = Flag.near(center, 9999999 , order: 'distance')
+    @flags = Flag.near(center, 9999999 , order: 'distance').paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /flags/1

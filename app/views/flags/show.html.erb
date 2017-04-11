@@ -9,11 +9,12 @@
 <h3>
   <%= @flag.name %>
 </h3>
+<p>Checkins - Active: <%= num_active_checkins(@flag)%> | Total: <%= num_total_checkins(@flag) %></p>
 <% if user_near_flag?(@flag) %>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
 <% else %>
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=11&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
 <% end %>
 
@@ -43,8 +44,8 @@
 
 <div>
   Tracks:
-  <% @flag.tracks.each do |track| %>
-    <%= render :partial => "shared/track", locals: {track: track} %>
+  <% @flag.entries.each do |entry| %>
+    <%= render :partial => "shared/track", locals: {track: entry.track, entry: entry} %>
   <% end %>
 </div>
 <%= link_to "Tracks API", api_tracks_path %>

@@ -5,5 +5,5 @@
     <input id="path_input" type="hidden" name="path" value=<%= new_entry_path(flag)  %> >
     <input type="submit" class="search-tracks-btn" value="Search" ajax-path=<%=api_tracks_path%>>
   </form>
-  <div id="results"></div>
+  <span id="loading" asset-path="<%= asset_path("loading2.gif") %>"></span>
 </div>

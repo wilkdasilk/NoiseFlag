@@ -40,6 +40,7 @@ gem 'react_on_rails', '~> 6'
 gem 'searchkick'
 gem 'httparty', '~> 0.13.7'
 gem 'jwt'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

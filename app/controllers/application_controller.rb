@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def require_login
+    redirect_to splash_path unless current_user
+  end
+
   def set_flag_by_id
     flag_id = params[:flag_id]
     @flag = Flag.find_by_id(flag_id)
