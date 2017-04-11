@@ -10,9 +10,10 @@ module FlagsHelper
 
   def markers_string(flags)
     return "" if !flags
-    flags.inject("") do |str, flag|
-      str +  "|#{flag.latitude},#{flag.longitude}"
+    l_str = flags.inject("") do |str, flag|
+      str +  "&markers=icon:https://goo.gl/z5p5H1|#{flag.latitude},#{flag.longitude}"
     end
+    l_str[0..-2]
   end
 
   def center
