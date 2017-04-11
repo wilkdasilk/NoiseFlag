@@ -1,7 +1,7 @@
 class FlagsController < ApplicationController
+  before_action :require_login
   before_action :set_flag, only: [:show, :edit, :update, :destroy]
   before_action :set_user_location
-  before_action :require_login
 
   # GET /flags
   # GET /flags.json

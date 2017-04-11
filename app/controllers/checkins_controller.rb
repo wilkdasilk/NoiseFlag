@@ -1,9 +1,10 @@
 class CheckinsController < ApplicationController
 
   before_action :set_flag_by_id
+  before_action :require_login
 
   def new
-    
+
   end
 
   def create
