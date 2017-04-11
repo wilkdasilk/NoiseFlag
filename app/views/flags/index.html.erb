@@ -13,7 +13,7 @@
   <input type="text" name="center" placeholder="search by city, address, or monument">
   <input type="submit">
 </form> <br />
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{center}&markers=#{markers_string(@flags)}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{center}#{markers_string(@flags)}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "Flags on the map"%>
 
 

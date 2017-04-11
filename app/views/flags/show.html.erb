@@ -10,10 +10,10 @@
   <%= @flag.name %>
 </h3>
 <% if user_near_flag?(@flag) %>
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
 <% else %>
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=#{@flag.latitude},#{@flag.longitude}&zoom=11&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=11&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
 <% end %>
 
