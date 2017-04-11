@@ -8,6 +8,19 @@ module FlagsHelper
     current_user.latitude && current_user.longitude && !!current_user.last_ping_time && current_user.last_ping_time >= 30.seconds.ago.utc
   end
 
+  def markers_string(flags)
+    return "" if !flags
+    flags.inject("") do |str, flag|
+      str +  "|#{flag.latitude},#{flag.longitude}"
+    end
+  end
+
+  def center
+    return params[:center] if !!params[:center] && params[:center] !=""
+    return "#{current_user.latitude},#{current_user.longitude}" if !!current_user.latitude & !!current_user.longitude
+    return current_user.current_city
+  end
+
   private
 
   def user_checked_in?(flag)

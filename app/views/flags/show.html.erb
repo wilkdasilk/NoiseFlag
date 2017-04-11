@@ -9,6 +9,13 @@
 <h3>
   <%= @flag.name %>
 </h3>
+<% if user_near_flag?(@flag) %>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+              class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
+<% else %>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=#{@flag.latitude},#{@flag.longitude}&zoom=11&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+              class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
+<% end %>
 
 <p>
   <strong>Host:</strong>
@@ -26,8 +33,20 @@
     <% end %>
   </div>
 </p>
+<% if user_checked_in?(@flag) %>
+  <%= render "search_tracks", flag: @flag %>
+   <!-- to be used with react magic later
+   <#%= react_component("TracksApp", props: @tracks_props, prerender: false) %>
+    -->
+<% end %>
 
-<%= render "search_tracks" %>
+
+<div>
+  Tracks:
+  <% @flag.tracks.each do |track| %>
+    <%= render :partial => "shared/track", locals: {track: track} %>
+  <% end %>
+</div>
 <%= link_to "Tracks API", api_tracks_path %>
 
 <%= link_to 'Edit', edit_flag_path(@flag) %> |

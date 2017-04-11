@@ -2,6 +2,10 @@ class CheckinsController < ApplicationController
 
   before_action :set_flag_by_id
 
+  def new
+    
+  end
+
   def create
     if user_nearby?(@flag)
       current_user.checkins.active[0].inactive! if current_user.checkins.active.length >0

@@ -1,0 +1,14 @@
+<%= link_to "Done!", flag_path(@flag) %>
+
+<h3>Add tracks</h3>
+<% @tracks.each do |track| %>
+  <div>
+    <h5>"<%= track.name %>" by <%= track.artist %></h5>
+    <h6><%= track.album %></h6>
+    <% if @flag.tracks.include?(track)%>
+      <p>√ included</p>
+    <% else %>
+      <%= link_to "+", entries_path(@flag, track), method: "post" %>
+    <% end %>
+  </div>
+<% end %>
