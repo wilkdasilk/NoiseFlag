@@ -22,6 +22,14 @@ module FlagsHelper
     return current_user.current_city
   end
 
+  def num_active_checkins(flag)
+    flag.checkins.active.length
+  end
+
+  def num_total_checkins(flag)
+    flag.checkins.length
+  end
+
   private
 
   def user_checked_in?(flag)

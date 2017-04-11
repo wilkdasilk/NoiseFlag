@@ -9,6 +9,7 @@
 <h3>
   <%= @flag.name %>
 </h3>
+<p>Checkins - Active: <%= num_active_checkins(@flag)%> | Total: <%= num_total_checkins(@flag) %></p>
 <% if user_near_flag?(@flag) %>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
               class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
