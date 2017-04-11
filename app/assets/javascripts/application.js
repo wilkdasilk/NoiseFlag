@@ -45,9 +45,15 @@ function getGeoLocation() {
 
 function setGeoQuery(position) {
   //reload the page with full location functionality
-  var base_url = location.href;
+  var baseUrl = location.href;
   if (base_url.substring(-1) =="/") {
-    base_url = base_url.substring(0, base_url.length -1);
+    baseUrl = baseUrl.substring(0, baseUrl.length -1);
   }
-  window.location.replace(base_url + `?lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+  if (!baseUrl.includes("?")){
+    baseUrl = baseUrl + "?"
+  }
+  else {
+    baseUrl = baseUrl + "&"
+  }
+  window.location.replace(baseUrl + `lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
 }

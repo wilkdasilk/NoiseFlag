@@ -6,7 +6,7 @@ class FlagsController < ApplicationController
   # GET /flags.json
   def index
     redirect_to splash_path unless current_user
-    @flags = Flag.all
+    @flags = Flag.near(center, 9999999 , order: 'distance')
   end
 
   # GET /flags/1
@@ -76,6 +76,12 @@ class FlagsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def flag_params
       params.require(:flag).permit(:name, :description, :user_id)
+    end
+
+    def center
+      return params[:center] if !!params[:center] && params[:center] !=""
+      return [current_user.latitude, current_user.longitude] if !!current_user.latitude & !!current_user.longitude
+      return current_user.current_city
     end
 
 end
