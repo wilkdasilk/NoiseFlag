@@ -5,4 +5,8 @@ class Entry < ApplicationRecord
   belongs_to :user
 
   acts_as_votable
+
+  def verb
+    "Added"
+  end
 end

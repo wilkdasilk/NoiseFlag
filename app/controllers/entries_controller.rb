@@ -67,9 +67,10 @@ class EntriesController < ApplicationController
    end
 
    def require_checkin
-     if current_user.active_checkin.flag != @entry.flag
+     @flag = @entry.flag unless !@entry
+     if current_user.active_checkin.flag != @flag
        respond_to do |format|
-        format.html { redirect_to @entry.flag, notice: "Please check in first" }
+        format.html { redirect_to @flag, notice: "Please check in first" }
       end
      end
    end

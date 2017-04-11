@@ -20,3 +20,19 @@
     <%= link_to "Plant a Flag!", new_flag_path %>
   </div>
 </div>
+
+<div class="feed">
+  <% if @user.actions.length > 0 %>
+    <% @user.actions.each do |action| %>
+      <% if action.class == Flag %>
+        <div class="action"><%= action.verb %> <%= link_to action.name, flag_path(action)%>- <%=time_ago_in_words(action.created_at) %> ago</div>
+      <% elsif action.class == Entry%>
+        <div class="action"><%= action.verb %> "<%= action.track.name %>" by <%= action.track.artist %> to <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago</div>
+      <% elsif action.class == ActsAsVotable::Vote%>
+        <div class="action"><%= action.vote_flag == true ? "Upvoted" : "Downvoted" %> "<%= entry_for_vote(action).track.name %>" by <%= entry_for_vote(action).track.artist %> at <%= link_to entry_for_vote(action).flag.name, flag_path(entry_for_vote(action).flag)%>- <%=time_ago_in_words(action.created_at) %> ago</div>
+      <% elsif action.class == Checkin %>
+        <div class="action"><%= action.verb %> at <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago</div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
