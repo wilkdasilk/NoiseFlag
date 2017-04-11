@@ -40,20 +40,48 @@ $(document).on('turbolinks:load', function() {
 
 //for setting user geolocation
 function getGeoLocation() {
-  navigator.geolocation.getCurrentPosition(setGeoQuery);
+  var location = navigator.geolocation.getCurrentPosition(setGeoQuery, handleError);
 }
 
 function setGeoQuery(position) {
   //reload the page with full location functionality
   var baseUrl = location.href;
-  if (base_url.substring(-1) =="/") {
+  if (baseUrl.substring(-1) =="/") {
     baseUrl = baseUrl.substring(0, baseUrl.length -1);
   }
   if (!baseUrl.includes("?")){
     baseUrl = baseUrl + "?"
-  }
-  else {
+  } else {
     baseUrl = baseUrl + "&"
   }
   window.location.replace(baseUrl + `lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+}
+
+function handleError(err) {
+  //helpful link, why not html5 - http://stackoverflow.com/questions/32329464/chrome-navigator-geolocation-getcurrentposition-error-403
+  console.log(err, "attempting to get location by IP address");
+  getGeoLocation2();
+}
+
+function getGeoLocation2() {
+  var position;
+  $.getJSON("http://ipinfo.io", function(ipinfo){
+    console.log("Found location ["+ipinfo.loc+"] by ipinfo.io");
+    position = ipinfo.loc.split(",");
+    setGeoQuery2(position);
+  });
+}
+
+function setGeoQuery2(position) {
+  //reload the page with full location functionality
+  var baseUrl = location.href;
+  if (baseUrl.substring(-1) =="/") {
+    baseUrl = baseUrl.substring(0, baseUrl.length -1);
+  }
+  if (!baseUrl.includes("?")){
+    baseUrl = baseUrl + "?"
+  } else {
+    baseUrl = baseUrl + "&"
+  }
+  window.location.replace(baseUrl + `lat=${position[0]}&lon=${position[1]}`);
 }
