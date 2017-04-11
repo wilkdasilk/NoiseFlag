@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :tracks, through: :entries
   has_many :checkins
 
+  acts_as_voter
+
   def active_checkin
     self.checkins.active[0] if self.checkins.active.length > 0
   end

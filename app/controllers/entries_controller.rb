@@ -2,9 +2,9 @@ class EntriesController < ApplicationController
   #  before_filter :authenticate_request!
   before_action :require_login
   before_action :set_flag_by_id
-  before_action :set_entry, only: [:destroy]
+  before_action :set_entry, only: [:destroy, :upvote, :downvote, :unvote]
   before_action :require_flag_owner, only: [:destroy]
-  before_action :require_checkin, only: [:new, :create]
+  before_action :require_checkin, only: [:new, :create, :upvote, :downvote, :unvote]
   before_action :set_track_by_id, only: [:create]
 
    def new
@@ -44,6 +44,21 @@ class EntriesController < ApplicationController
     end
    end
 
+   def upvote
+     @entry.upvote_by current_user
+     redirect_to :back
+   end
+
+   def downvote
+     @entry.downvote_by current_user
+     redirect_to :back
+   end
+
+   def unvote
+     @entry.unliked_by current_user
+     redirect_to :back
+   end
+
    private
 
    def set_track_by_id
@@ -52,9 +67,9 @@ class EntriesController < ApplicationController
    end
 
    def require_checkin
-     if current_user.active_checkin.flag != @flag
+     if current_user.active_checkin.flag != @entry.flag
        respond_to do |format|
-        format.html { redirect_to @flag, notice: "Please check in first" }
+        format.html { redirect_to @entry.flag, notice: "Please check in first" }
       end
      end
    end

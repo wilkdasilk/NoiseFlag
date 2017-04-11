@@ -41,6 +41,7 @@ gem 'searchkick'
 gem 'httparty', '~> 0.13.7'
 gem 'jwt'
 gem 'will_paginate', '~> 3.1.0'
+gem 'acts_as_votable', '~> 0.10.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
