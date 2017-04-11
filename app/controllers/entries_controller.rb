@@ -8,12 +8,12 @@ class EntriesController < ApplicationController
      # already seeded from spotify
      query = params[:q]
      return @tracks = Track.all if query.nil? || query == ""
-     @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start
+     @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start, :page => params[:page], :per_page => 10
      if @tracks.length > 0
        return @tracks
      else
        search_spotify(query)
-       @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start
+       @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start, :page => params[:page], :per_page => 10
      end
    end
 

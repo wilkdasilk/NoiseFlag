@@ -6,7 +6,7 @@ class FlagsController < ApplicationController
   # GET /flags.json
   def index
     redirect_to splash_path unless current_user
-    @flags = Flag.near(center, 9999999 , order: 'distance')
+    @flags = Flag.near(center, 9999999 , order: 'distance').paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /flags/1
