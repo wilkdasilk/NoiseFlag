@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   post "/flags/:flag_id/entries/:track_id", to: "entries#create", as: "entries"
   get "/flags/:flag_id/entries/new", to: "entries#new", as: "new_entry"
   delete "/entries/:id", to: "entries#destroy", as: "entry"
+  put "/entries/:id/upvote", to: "entries#upvote", as: "upvote"
+  put "/entries/:id/downvote", to: "entries#downvote", as: "downvote"
+  put "/entries/:id/unvote", to: "entries#unvote", as: "unvote"
 
   # User routes
   # Why custom registrations? To handle additional user fields: http://jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html
