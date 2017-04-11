@@ -18,21 +18,4 @@ class User < ApplicationRecord
     self.checkins.active[0] if self.checkins.active.length > 0
   end
 
-  def actions
-    result = []
-    self.flags.each do |flag|
-      result << flag
-    end
-    self.entries.each do |entry|
-      result << entry
-    end
-    self.votes.each do |vote|
-      result << vote
-    end
-    self.checkins.each do |checkin|
-      result << checkin
-    end
-    result.sort { |y, x| x.created_at <=> y.created_at }
-  end
-
 end

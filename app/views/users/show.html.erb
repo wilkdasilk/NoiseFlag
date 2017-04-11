@@ -22,8 +22,8 @@
 </div>
 
 <div class="feed">
-  <% if @user.actions.length > 0 %>
-    <% @user.actions.each do |action| %>
+  <% if actions(@user).length > 0 %>
+    <% actions(@user).each do |action| %>
       <% if action.class == Flag %>
         <div class="action"><%= action.verb %> <%= link_to action.name, flag_path(action)%>- <%=time_ago_in_words(action.created_at) %> ago</div>
       <% elsif action.class == Entry%>
@@ -35,4 +35,5 @@
       <% end %>
     <% end %>
   <% end %>
+  <%= will_paginate @list %>
 </div>
