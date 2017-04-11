@@ -4,4 +4,8 @@ class Checkin < ApplicationRecord
 
   enum status: [ :inactive, :active ]
 
+  def verb
+    "Checked in"
+  end
+
 end
