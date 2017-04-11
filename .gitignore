@@ -27,6 +27,7 @@ node_modules
 
 # HelloWorld docs
 /client/app/bundles/HelloWorld/*
+/client/app/bundles/Tracks/*
 /app/views/hello_world/*
 /app/controllers/hello_world_controller.rb
 /.env

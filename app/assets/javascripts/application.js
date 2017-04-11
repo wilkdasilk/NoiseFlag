@@ -31,7 +31,9 @@ $(document).on('turbolinks:load', function() {
   });
 
   function onSuccess(res) {
-    console.log(res);
+    var base_url = $('#path_input').val();
+    var query = $('#search_query').val();
+    window.location.replace(base_url + "?q=" + query );
   }
 
 });

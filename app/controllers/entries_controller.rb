@@ -1,13 +1,29 @@
 class EntriesController < ApplicationController
   #  before_filter :authenticate_request!
+  before_action :set_flag_by_id
+  before_action :set_track_by_id, only: [:create]
+  before_action :require_checkin
+
+   def new
+     # already seeded from spotify
+     query = params[:q]
+     return @tracks = Track.all if query.nil? || query == ""
+     @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start
+     if @tracks.length > 0
+       return @tracks
+     else
+       search_spotify(query)
+       @tracks = Track.search query, fields: [:name, :artist, :album], match: :word_start
+     end
+   end
 
    def create
-     set_flag_by_id
-     @entry = current_user.entries.create(entry_params)
+     @entry = current_user.entries.create
+     @track.entries << @entry
      @flag.entries << @entry
      respond_to do |format|
-      if @flag.save
-        format.html { redirect_to @flag, notice: "Track entered successfully!" }
+      if @flag.save && @track.save
+        format.html { redirect_to :back, notice: "Track entered successfully!" }
       else
         format.html { redirect_to @flag, notice: "Could not add track" }
       end
@@ -16,8 +32,17 @@ class EntriesController < ApplicationController
 
    private
 
-   def entry_params
-     params.require(:entry).permit(:track_id)
+   def set_track_by_id
+     track_id = params[:track_id]
+     @track = Track.find_by_id(track_id)
+   end
+
+   def require_checkin
+     if current_user.active_checkin.flag != @flag
+       respond_to do |format|
+        format.html { redirect_to @flag, notice: "Please check in first" }
+      end
+     end
    end
 
 end

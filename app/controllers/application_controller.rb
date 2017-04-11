@@ -19,7 +19,9 @@ class ApplicationController < ActionController::Base
       # current_user.longitude = location[1]
       # current_user.last_ping_time = DateTime.now().change(:offset =>"+0000")
       # current_user.save
-      checkout unless user_nearby?(current_user.active_checkin)
+      if !!current_user.active_checkin
+        checkout unless user_nearby?(current_user.active_checkin.flag)
+      end
     end
   end
 
@@ -29,6 +31,27 @@ class ApplicationController < ActionController::Base
 
   def checkout
     current_user.active_checkin.inactive! if !!current_user.active_checkin
+  end
+
+  private
+
+  def search_spotify(spotify_query)
+    response = HTTParty.get("https://api.spotify.com/v1/search?type=track&q=" + spotify_query)
+    return console.log(response["error"]) if !!response["error"]
+    items = response["tracks"]["items"]
+    items.each do |item|
+      spotify_id = item["id"]
+      if !Track.find_by(spotify_id: spotify_id)
+          Track.create!({
+          name: item["name"],
+          artist: item["artists"].reduce([]){|arr, artist| arr.push artist["name"] }.join(', '),
+          image_url: item["album"]["images"][1]["url"],
+          album: item["album"]["name"],
+          spotify_id: spotify_id
+          })
+      end
+    end
+    Track.reindex
   end
 
   #from https://www.sitepoint.com/introduction-to-using-jwt-in-rails/

@@ -12,7 +12,8 @@ class FlagsController < ApplicationController
   # GET /flags/1
   # GET /flags/1.json
   def show
-    
+    # this is meant to go with react magic later
+    # @tracks_props = { tracks: [] }
   end
 
   # GET /flags/new
