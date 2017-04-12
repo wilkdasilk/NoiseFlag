@@ -1,0 +1,14 @@
+<%= link_to flag do %>
+  <div class="flag-panel panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title left"><%= flag.name %></h3>
+      <h5 class="right"><%= flag.distance_from(current_user).round(1) if !!current_user.latitude && !!current_user.longitude %> mi</h5>
+    </div>
+    <div class="panel-body">
+      Active: <%= num_active_checkins(flag)%> | Total: <%= num_total_checkins(flag) %>
+      <div>
+        <%= truncate(flag.description, length: 160, separator: ' ')%>
+      </div>
+    </div>
+  </div>
+<% end %>

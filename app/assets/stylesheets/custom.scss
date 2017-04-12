@@ -1,0 +1,111 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* Variables */
+
+$heading: "Arimo", sans-serif;
+$body-text: "Lato", sans-serif;
+$blue-shadow: rgba(57,171,216,1);
+$blue-shadow-op: rgba(57,171,216,.8);
+$blue-main: rgba(64,191,242,1);
+$blue-main-op: rgba(64,191,242,.8);
+$light-blue: rgba(128,255,255,1);
+$light-text: white;
+$logo-width: 48px;
+$logo-height: 48px;
+
+/*Layout*/
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $heading;
+
+}
+.headline {
+  margin:5%;
+}
+.align{
+  padding:0;
+  margin:0;
+}
+
+.flag-panel{
+  text-align:left;
+}
+
+.right {
+  float:right;
+  padding:0;
+  margin-top:0;
+}
+
+.left{
+  display:inline;
+
+}
+
+.display {
+  margin: 10% auto;
+}
+.navbar-bar.nav-cust {
+  float:right;
+}
+.navbar-form{
+  padding:0;
+  margin:0;
+}
+.panel-action {
+  margin-bottom:4px;
+}
+.logo {
+  width: $logo-width;
+  height: $logo-height;
+  top:0;
+  vertical-align: top;
+}
+.title {
+  display:inline-block;
+  font-size: 3em;
+  top:10px;
+}
+
+.wrap {
+  width:100%;
+  margin:3% 0;
+}
+body {
+  text-align: center;
+  font-family: $body-text;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:visited.btn-cust, .btn-cust{
+  background-color: $blue-shadow;
+  border-color: $blue-main;
+  color: $light-text;
+}
+
+.btn-cust:active, .btn-cust:focus, .btn-cust:active:focus, .btn-cust:hover, .btn-cust:active:hover, .btn-cust:disabled:hover {
+  background-color: $blue-main-op;
+  border-color: $blue-shadow-op;
+}
+
+.form-div {
+  background: rgba(255,255,255,.85);
+  border-radius: 2rem;
+  padding: 30px;
+}
+
+.field, .actions{
+  margin-bottom: 7px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.card {
+  margin-bottom: 5%;
+}

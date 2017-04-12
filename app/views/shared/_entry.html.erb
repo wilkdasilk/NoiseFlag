@@ -1,0 +1,30 @@
+<div>
+  <%= render :partial => "shared/track", locals: {track: track, adding:false} %>
+  <% if user_checked_in?(entry.flag) %>
+    <% if current_user.voted_up_on? entry %>
+      <%= link_to unvote_path(entry), method: "put" do%>
+        Upvoted <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <%= entry.get_upvotes.size %>
+      <% end %>
+    <% else %>
+      <%= link_to upvote_path(entry), method: "put" do%>
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <%= entry.get_upvotes.size %>
+      <% end %>
+    <% end %>
+    <% if current_user.voted_down_on? entry %>
+      <%= link_to unvote_path(entry), method: "put" do%>
+        Downvoted <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <%= entry.get_downvotes.size %>
+      <% end %>
+    <% else %>
+      <%= link_to downvote_path(entry), method: "put" do%>
+        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        <%= entry.get_downvotes.size %>
+      <% end %>
+    <% end %>
+  <% end %><br />
+  <% if !!entry && current_user == entry.flag.user %>
+    <%= link_to "Remove track", entry_path(entry), method: "delete" %>
+  <% end %>
+</div>

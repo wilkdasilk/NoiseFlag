@@ -42,6 +42,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
