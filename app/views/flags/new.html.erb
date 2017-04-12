@@ -1,0 +1,13 @@
+<% if !have_current_location? %>
+  <script>
+  $(document).on('turbolinks:load', function() {
+    getGeoLocation();
+  });
+  </script>
+<% end %>
+
+<h1>New Flag</h1>
+<p>Flag will plant at your current location</p>
+<%= render 'form', flag: @flag %>
+
+<%= link_to 'Back', flags_path %>

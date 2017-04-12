@@ -1,0 +1,31 @@
+<div>
+  <h5>"<%= track.name %>" by <%= track.artist %></h5>
+  <h6><%= track.album %></h6>
+  <% if user_checked_in?(entry.flag) %>
+    <% if current_user.voted_up_on? entry %>
+      <%= link_to unvote_path(entry), method: "put" do%>
+        Upvoted √
+        <%= entry.get_upvotes.size %>
+      <% end %>
+    <% else %>
+      <%= link_to upvote_path(entry), method: "put" do%>
+        Upvote
+        <%= entry.get_upvotes.size %>
+      <% end %>
+    <% end %>
+    <% if current_user.voted_down_on? entry %>
+      <%= link_to unvote_path(entry), method: "put" do%>
+        Downvoted √
+        <%= entry.get_downvotes.size %>
+      <% end %>
+    <% else %>
+      <%= link_to downvote_path(entry), method: "put" do%>
+        Downvote
+        <%= entry.get_downvotes.size %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if !!entry && current_user == entry.flag.user %>
+    <%= link_to "Remove track", entry_path(entry), method: "delete" %>
+  <% end %>
+</div>
