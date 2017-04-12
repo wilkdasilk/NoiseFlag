@@ -20,9 +20,7 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     console.log("I'm submitting");
     var imgSrc = $('#loading').attr('asset-path');
-    $('#loading').append('
-      <img src="' + imgSrc +'" >'
-    );
+    $('#loading').append("<img src='" + imgSrc +"' >");
     $.ajax({
       url: $('.search-tracks-btn').attr('ajax-path'),
       data: $('form').serialize(),
