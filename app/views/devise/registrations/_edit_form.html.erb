@@ -15,7 +15,7 @@
   </div>
 
   <% if current_user.picture.url.present? %>
-    <div><%= image_tag(current_user.avatar.url(:profile)) %></div>
+    <div><%= image_tag(current_user.picture.url(:profile)) %></div>
     <div class="field form-group">
       <div class="checkbox">
         <%= f.label :remove_picture do %>
