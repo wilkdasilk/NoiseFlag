@@ -7,32 +7,35 @@
   });
   </script>
 <% end %>
-<div class="col-md-6">
-  <% if user_near_flag?(@flag) %>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
-                class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
-  <% else %>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
-                class: 'img-fluid img-rounded', alt: "#{@flag.name} on the map"%>
-  <% end %>
-  <h3>
-    <%= @flag.name %>
-  </h3>
-  <div><%= @flag.address %></div>
-  <p>Checkins - Active: <%= num_active_checkins(@flag)%> | Total: <%= num_total_checkins(@flag) %></p>
-  <div>
-    <% if !user_checked_in?(@flag) && user_near_flag?(@flag)%>
-      <%= link_to "Check in", checkins_path(@flag), method: "post" %>
-    <% elsif user_checked_in?(@flag)%>
-      Checked in<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+  <div class="card">
+    <% if user_near_flag?(@flag) %>
+      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+                    class: 'img-fluid img-rounded card-img-top', alt: "#{@flag.name} on the map"%>
+    <% else %>
+      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
+                    class: 'img-fluid img-rounded card-img-top', alt: "#{@flag.name} on the map"%>
     <% end %>
-  </div><br />
-  <strong>Host:</strong>
-  <%= link_to @flag.user.name, user_path(@flag.user) %>
-  <div><%= @flag.description %></div>
-  <%= link_to 'Edit', edit_flag_path(@flag) if current_user == @flag.user%>
+    <div class="card-block">
+      <h3 class="card-title"><%= @flag.name %></h3>
+      <ul class="list-group">
+        <li class="list-group-item">Hosted by:   <%= link_to @flag.user.name, user_path(@flag.user) %></li>
+        <li class="list-group-item"><%= @flag.address %></li>
+        <li class="list-group-item">Checkins - Active: <%= num_active_checkins(@flag)%> | Total: <%= num_total_checkins(@flag) %></li>
+        <li class="list-group-item"><%= @flag.description %></li>
+      </ul>
+      <div class="card-block">
+        <% if !user_checked_in?(@flag) && user_near_flag?(@flag)%>
+            <%= link_to "Check in", checkins_path(@flag), method: "post", class: "btn btn-primary btn-cust" %>
+        <% elsif user_checked_in?(@flag)%>
+          Checked in<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to 'Edit', edit_flag_path(@flag), class: "btn btn-primary btn-cust" if current_user == @flag.user%>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
   <% if user_checked_in?(@flag) %>
     <%= render "search_tracks", flag: @flag %>
      <!-- to be used with react magic later
@@ -43,7 +46,7 @@
     <% if @flag.entries.length == 0 %>
       No tracks yet! Someone fix that asap
     <% else %>
-      <h3>Tracks:</h3>
+      <h3>Tracks</h3>
       <% @flag.entries.each do |entry| %>
         <%= render :partial => "shared/entry", locals: {track: entry.track, entry: entry} %>
       <% end %>

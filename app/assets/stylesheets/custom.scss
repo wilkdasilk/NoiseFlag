@@ -49,6 +49,12 @@ h1,h2,h3,h4,h5,h6 {
 .navbar-bar.nav-cust {
   float:right;
 }
+.navbar-brand {
+  padding: 10px 15px;
+}
+.navbar-brand > img {
+  display: inline;
+}
 .navbar-form{
   padding:0;
   margin:0;
@@ -102,10 +108,30 @@ a:visited.btn-cust, .btn-cust{
   margin-bottom: 7px;
 }
 
-.pagination {
-  text-align: center;
+.pagination .disabled {
+  visibility: hidden;
 }
 
 .card {
   margin-bottom: 5%;
+  min-width:480px;
+  .track-img {
+    width:100%;
+  }
+}
+
+.map-card {
+  min-width:480px;
+
+}
+
+.user-card, .your-cards {
+  min-width: 256px;
+}
+.logodiv {
+  white-space: nowrap;
+}
+
+.contain {
+  overflow: auto;
 }

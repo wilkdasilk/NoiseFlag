@@ -29,19 +29,29 @@
         </div>
         <% end %>
       </div>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
-          <ul class="nav navbar-nav nav-cust">
-            <li><%= link_to "Home", root_path %></li>
-            <% if !current_user %>
-              <li><%= link_to "Login", new_user_session_path %></li>
-              <li><%= link_to "Sign Up", new_user_registration_path %></li>
-            <% else %>
-              <li><%= link_to "My Profile", user_path(current_user) %></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: 'delete' %></li>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </button>
+            <%= link_to root_path, class: "navbar-brand" do %>
+              <%= image_tag "flag_marker.png"%><span>Noise Flag</span>
             <% end %>
-          </ul>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right nav-cust">
+              <% if !current_user %>
+                <li><%= link_to "Login", new_user_session_path %></li>
+                <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <% else %>
+                <li><%= link_to "My Profile", user_path(current_user) %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: 'delete' %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
+
       </nav>
     </header>
     <main>

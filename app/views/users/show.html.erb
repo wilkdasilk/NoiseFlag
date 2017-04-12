@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 
-<div class="col-md-4">
+<div class="col-md-4 col-sm-5 user-card">
   <div>
     <img src= <%= user_img_or_default(@user) %> alt="User profile picture">
     <h3><%= @user.name %></h3>
@@ -11,48 +11,46 @@
     <% end %>
   </div>
 </div>
-<div class="col-md-8">
-  <div class="col-md-9">
-    <div class="col-md-12">
-      <% if !@user.flags.empty? %>
-        <div>
-          <h3>
-            <span><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</span>
-            <% if @user == current_user %>
-              <%= link_to new_flag_path do %>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              <% end %>
-            <% end %>
-          </h3>
-          <% @user.flags.each do |flag| %>
-            <%= render :partial => "shared/flag", locals: {flag: flag}%>
-          <% end %>
-        </div><br />
-      <% end %>
-    </div>
-    <div class="feed">
-      <% if actions(@user).length > 0 %>
+<div class="col-md-8 col-md-offset-0 col-sm-offset-1 col-sm-6">
+  <div class="col-md-9 col-sm-10 your-cards">
+    <% if !@user.flags.empty? %>
+      <div>
         <h3>
-          <span><%= @user == current_user ? "Your " : @user.name + "'s "%>Actions</span>
+          <span><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</span>
+          <% if @user == current_user %>
+            <%= link_to new_flag_path do %>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
         </h3>
-        <% actions(@user).each do |action| %>
-          <div class="panel panel-default panel-action">
-            <div class="panel-body">
-              <% if action.class == Flag %>
-                <%= action.verb %> <%= link_to action.name, flag_path(action)%>- <%=time_ago_in_words(action.created_at) %> ago
-              <% elsif action.class == Entry%>
-                <%= action.verb %> "<%= action.track.name %>" by <%= action.track.artist %> to <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago
-              <% elsif action.class == ActsAsVotable::Vote%>
-                <%= action.vote_flag == true ? "Upvoted" : "Downvoted" %> "<%= entry_for_vote(action).track.name %>" by <%= entry_for_vote(action).track.artist %> at <%= link_to entry_for_vote(action).flag.name, flag_path(entry_for_vote(action).flag)%>- <%=time_ago_in_words(action.created_at) %> ago
-              <% elsif action.class == Checkin %>
-                <%= action.verb %> at <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago
-              <% end %>
-            </div>
-          </div>
-
+        <% @user.flags.each do |flag| %>
+          <%= render :partial => "shared/flag", locals: {flag: flag}%>
         <% end %>
+      </div><br />
+    <% end %>
+  </div>
+  <div class="col-md-9 col-sm-10 feed your-cards">
+    <% if actions(@user).length > 0 %>
+      <h3>
+        <span><%= @user == current_user ? "Your " : @user.name + "'s "%>Actions</span>
+      </h3>
+      <% actions(@user).each do |action| %>
+        <div class="panel panel-default panel-action">
+          <div class="panel-body">
+            <% if action.class == Flag %>
+              <%= action.verb %> <%= link_to action.name, flag_path(action)%>- <%=time_ago_in_words(action.created_at) %> ago
+            <% elsif action.class == Entry%>
+              <%= action.verb %> "<%= action.track.name %>" by <%= action.track.artist %> to <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago
+            <% elsif action.class == ActsAsVotable::Vote%>
+              <%= action.vote_flag == true ? "Upvoted" : "Downvoted" %> "<%= entry_for_vote(action).track.name %>" by <%= entry_for_vote(action).track.artist %> at <%= link_to entry_for_vote(action).flag.name, flag_path(entry_for_vote(action).flag)%>- <%=time_ago_in_words(action.created_at) %> ago
+            <% elsif action.class == Checkin %>
+              <%= action.verb %> at <%= link_to action.flag.name, flag_path(action.flag)%>- <%=time_ago_in_words(action.created_at) %> ago
+            <% end %>
+          </div>
+        </div>
+
       <% end %>
-      <%= will_paginate @list, class: "pagination" %>
-    </div>
+    <% end %>
+    <%= will_paginate @list, :page_links => false, class: "pagination" %>
   </div>
 </div>

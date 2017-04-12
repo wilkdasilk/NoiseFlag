@@ -33,5 +33,5 @@
   <% @flags.each do |flag|%>
     <%= render :partial => "shared/flag", locals: {flag: flag}%>
   <% end %>
-  <%= will_paginate @flags%>
+  <%= will_paginate @flags, :page_links => false %>
 </div>
