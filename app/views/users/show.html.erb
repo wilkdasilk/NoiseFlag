@@ -18,8 +18,10 @@
         <div>
           <h3>
             <span><%= @user == current_user ? "Your " : @user.name + "'s "%>Flags</span>
+            <% if @user == current_user %>
               <%= link_to new_flag_path do %>
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <% end %>
             <% end %>
           </h3>
           <% @user.flags.each do |flag| %>
