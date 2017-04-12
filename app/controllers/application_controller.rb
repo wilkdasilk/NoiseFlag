@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     @flag = Flag.find_by_id(flag_id)
   end
 
+  #for omniauth
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_path
+  end
+
   private
 
   def set_user_location
