@@ -20,9 +20,9 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     console.log("I'm submitting");
     var imgSrc = $('#loading').attr('asset-path');
-    $('#loading').append(`
-        <img src="${imgSrc}" >
-    `);
+    $('#loading').append('
+      <img src="' + imgSrc +'" >'
+    );
     $.ajax({
       url: $('.search-tracks-btn').attr('ajax-path'),
       data: $('form').serialize(),
@@ -84,7 +84,7 @@ function setGeoQuery(position) {
   } else {
     baseUrl = baseUrl + "&"
   }
-  window.location.replace(baseUrl + `lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+  window.location.replace(baseUrl + 'lat=' + position.coords.latitude +'&lon=' + position.coords.longitude);
 }
 
 function handleError(err) {
@@ -113,5 +113,5 @@ function setGeoQuery2(position) {
   } else {
     baseUrl = baseUrl + "&"
   }
-  window.location.replace(baseUrl + `lat=${position[0]}&lon=${position[1]}`);
+  window.location.replace(baseUrl + 'lat=' + position[0] + '&lon=' + position[1]);
 }
