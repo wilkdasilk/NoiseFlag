@@ -12,7 +12,7 @@
   <div class="map-card">
     <h1>New Flag</h1>
     <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude if !!current_user.latitude},#{current_user.longitude if !!current_user.longitude}&markers=icon:https://goo.gl/z5p5H1|#{current_user.latitude if !!current_user.latitude},#{current_user.longitude if !!current_user.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
-                  class: 'img-fluid img-rounded', alt: "Flags on the map"%>
+                  class: 'img-fluid img-rounded map-img', alt: "Flags on the map"%>
     <p>Flag will plant at your current location</p>
     <%= render 'form', flag: @flag %>
     <%= link_to 'Back', flags_path %>

@@ -11,10 +11,10 @@
   <div class="card">
     <% if user_near_flag?(@flag) %>
       <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=15&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
-                    class: 'img-fluid img-rounded card-img-top', alt: "#{@flag.name} on the map"%>
+                    class: 'img-fluid img-rounded card-img-top map-img', alt: "#{@flag.name} on the map"%>
     <% else %>
       <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@flag.latitude},#{@flag.longitude}&markers=icon:https://goo.gl/z5p5H1|#{@flag.latitude},#{@flag.longitude}&zoom=12&size=480x300&key=AIzaSyCgLSktRs58zsQ33m06GoGOgexCNJuOruA",
-                    class: 'img-fluid img-rounded card-img-top', alt: "#{@flag.name} on the map"%>
+                    class: 'img-fluid img-rounded card-img-top map-img', alt: "#{@flag.name} on the map"%>
     <% end %>
     <div class="card-block">
       <h3 class="card-title"><%= @flag.name %></h3>
