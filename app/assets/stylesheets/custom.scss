@@ -128,6 +128,15 @@ a:visited.btn-cust, .btn-cust{
   .map-img {
     width: 100%;
   }
+  .map-card {
+    min-width:256px;
+  }
+  .card {
+    min-width:256px;
+    track-img {
+      width:100%;
+    }
+  }
 }
 
 .user-card, .your-cards {
