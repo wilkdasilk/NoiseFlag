@@ -3,7 +3,7 @@
   <h3><%= @user.name %></h3>
   <p><%= @user.current_city %></p>
   <p>Noisy since <%= @user.created_at.strftime("%B %d, %Y") %></p>
-  <% if current_user == @user %>
+  <%explode if current_user == @user %>
     <%= button_to "Edit", edit_user_registration_path, method: "get" %>
   <% end %>
 </div>

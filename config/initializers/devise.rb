@@ -254,7 +254,7 @@ Devise.setup do |config|
 
   keys = Rails.application.secrets
 
-  config.omniauth :spotify, keys.spotify['client_id'], keys.spotify['client_secret'], scope: 'playlist-modify-public user-top-read user-read-recently-played playlist-modify-private'
+  config.omniauth :spotify, keys.spotify['client_id'], keys.spotify['client_secret'], scope: 'user-read-email playlist-modify-public user-top-read user-read-recently-played playlist-modify-private'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
