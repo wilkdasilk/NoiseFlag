@@ -1,4 +1,4 @@
-# Noise Flag
+# NoiseFlag
 
 ## Overview
 
@@ -8,7 +8,7 @@
 
 ### Description
 
-Noise Flag is an app for curating crowdsourced playlists around a geolocation. Users can plant flags at their current location or check in when nearby. Checked-in users can add tracks to the playlist and place votes. Without checking in, users may view the current playlist and in upcoming versions follow a link to a user's Spotify playlist.
+NoiseFlag is an app for curating crowdsourced playlists around a geolocation. Users can plant flags at their current location or check in when nearby. Checked-in users can add tracks to the playlist and place votes. Without checking in, users may view the current playlist and in upcoming versions follow a link to a user's Spotify playlist.
 
 ## Technology
 
