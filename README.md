@@ -31,7 +31,7 @@ bootstrap-sass
 
 ### Installation
 
-To run locally, clone the [repo](http://github.com/wilkdasilk/noiseflag) , bundle install, create the database, and start rails server. That's it! (note: current project lives at the styles branch, this will change shortly)
+To run locally, clone the [repo](http://github.com/wilkdasilk/noiseflag) , bundle install, create the database, and start rails server. That's it! 
 
 ## Planning
 
