@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.text_field :name, placeholder: "Name your flag", autofocus: true, required: true %>
+  <div class="field form-group">
+    <%= f.text_field :name, placeholder: "Name your flag", autofocus: true, required: true, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.text_field :description, placeholder: "Tell us about the noises here...", required: true %>
+  <div class="field form-group">
+    <%= f.text_field :description, placeholder: "Tell us about the noises here...", required: true, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Plant it!"%>
+    <%= f.submit "Plant it!", class: "btn btn-primary btn-cust"%>
   </div>
 <% end %>

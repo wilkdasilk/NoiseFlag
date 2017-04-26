@@ -1,15 +1,11 @@
-<%= link_to "Done!", flag_path(@flag) %>
+<%= render "shared/header" %>
+
+<%= link_to "Done!", flag_path(@flag), class: "btn btn-primary btn-cust" %>
 
 <h3>Add tracks</h3>
-<% @tracks.each do |track| %>
-  <div>
-    <h5>"<%= track.name %>" by <%= track.artist %></h5>
-    <h6><%= track.album %></h6>
-    <% if @flag.tracks.include?(track)%>
-      <p>√ included</p>
-    <% else %>
-      <%= link_to "+", entries_path(@flag, track), method: "post" %>
-    <% end %>
-  </div>
-<% end %>
-<%= will_paginate @tracks %>
+<div class="col-md-12">
+  <% @tracks.each do |track| %>
+    <%= render :partial => "shared/track", locals: {track: track, adding:true, entry: false} %>
+  <% end %>
+  <%= will_paginate @tracks, :page_links => false, class: "pagination" %>
+</div>

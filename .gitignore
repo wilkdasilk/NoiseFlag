@@ -15,19 +15,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-# React on Rails
-npm-debug.log*
-node_modules
 
-# Generated js bundles
-/app/assets/webpack/*
-
-# react_on_rails helpful things
-/client/REACT_ON_RAILS_CLIENT_README.md
-
-# HelloWorld docs
-/client/app/bundles/HelloWorld/*
-/client/app/bundles/Tracks/*
-/app/views/hello_world/*
-/app/controllers/hello_world_controller.rb
 /.env
+/public/uploads/tmp/*

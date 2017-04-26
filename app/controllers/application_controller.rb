@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     @flag = Flag.find_by_id(flag_id)
   end
 
+  #for omniauth
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_path
+  end
+
   private
 
   def set_user_location
@@ -19,10 +24,6 @@ class ApplicationController < ActionController::Base
         longitude: params[:lon].to_f,
         last_ping_time: DateTime.now().utc
         })
-      # current_user.latitude = location[0]
-      # current_user.longitude = location[1]
-      # current_user.last_ping_time = DateTime.now().change(:offset =>"+0000")
-      # current_user.save
       if !!current_user.active_checkin
         checkout unless user_nearby?(current_user.active_checkin.flag)
       end
@@ -36,8 +37,6 @@ class ApplicationController < ActionController::Base
   def checkout
     current_user.active_checkin.inactive! if !!current_user.active_checkin
   end
-
-  private
 
   def search_spotify(spotify_query)
     response = HTTParty.get("https://api.spotify.com/v1/search?type=track&q=" + spotify_query)
