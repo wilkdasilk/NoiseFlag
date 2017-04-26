@@ -12,6 +12,13 @@
     <%= f.text_field :current_city, required: true, class: "form-control", placeholder: "What's your current city?" %>
   </div>
 
+  <%= f.hidden_field :picture_cache %>
+
+  <div class="field form-group">
+    <%= f.label :profile_photo %><br />
+    <%= f.file_field :picture, onchange: "validateFiles(this);", data: { max_file_size: 5.megabytes } %>
+  </div>
+
   <div class="field form-group">
     <%= f.email_field :email, required: true, class: "form-control", placeholder: "What's your e-mail?" %>
   </div>

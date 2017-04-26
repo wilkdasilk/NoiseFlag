@@ -1,33 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Noiseflag</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Lato" rel="stylesheet">
+
   </head>
 
   <body>
     <header>
-      <nav>
-        <%= link_to "Home", root_path %>
-        <% if !current_user %>
-          <%= link_to "Login", new_user_session_path %>
-          <%= link_to "Sign Up", new_user_registration_path %>
-        <% else %>
-          <%= link_to "My Profile", user_path(current_user) %>
-          <%= link_to "Logout", destroy_user_session_path, method: 'delete' %>
-        <% end %>
-      </nav>
       <div class="errors">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if notice %>
+          <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <span class="notice" id="notice"><%= notice %></span>
+          </div>
+        <% elsif alert %>
+        <div class="alert alert-warning" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="alert"><%= alert %></span>
+        </div>
+        <% end %>
       </div>
-      <h1>Noise Flag</h1>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </button>
+            <%= link_to root_path, class: "navbar-brand" do %>
+              <%= image_tag "flag_marker.png"%><span>Noise Flag</span>
+            <% end %>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right nav-cust">
+              <% if !current_user %>
+                <li><%= link_to "Login", new_user_session_path %></li>
+                <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <% else %>
+                <li><%= link_to "My Profile", user_path(current_user) %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: 'delete' %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
     </header>
     <main>
-      <%= yield %>
+      <div class="container-fluid">
+
+        <%= yield %>
+
+      </div>
     </main>
   </body>
 </html>

@@ -1,5 +1,3 @@
-//= require webpack-bundle
-
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -13,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -22,22 +21,48 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     console.log("I'm submitting");
     var imgSrc = $('#loading').attr('asset-path');
-    $('#loading').append(`
-        <img src="${imgSrc}" >
-    `);
+    $('#loading').append("<img src='" + imgSrc +"' >");
     $.ajax({
       url: $('.search-tracks-btn').attr('ajax-path'),
       data: $('form').serialize(),
       async: true,
       method: 'GET',
       success: onSuccess
-    })
+    });
   });
 
   function onSuccess(res) {
     var base_url = $('#path_input').val();
     var query = $('#search_query').val();
     window.location.replace(base_url + "?q=" + query );
+  }
+
+  // called on file upload, client-side
+   // source: http://stevenyue.com/blogs/validate-attachment-file-size-and-type-in-rails/
+   function validateFiles(inputFile) {
+    var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+    var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif or .png is allowed";
+    var allowedExtension = ["jpg", "jpeg", "gif", "png"];
+
+    var extName;
+    var maxFileSize = $(inputFile).data('max-file-size');
+    var sizeExceeded = false;
+    var extError = false;
+
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+       extName = this.name.split('.').pop();
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    });
+    if (sizeExceeded) {
+      window.alert(maxExceededMessage);
+      $(inputFile).val('');
+    };
+
+    if (extError) {
+      window.alert(extErrorMessage);
+      $(inputFile).val('');
+    };
   }
 
 });
@@ -58,7 +83,7 @@ function setGeoQuery(position) {
   } else {
     baseUrl = baseUrl + "&"
   }
-  window.location.replace(baseUrl + `lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+  window.location.replace(baseUrl + 'lat=' + position.coords.latitude +'&lon=' + position.coords.longitude);
 }
 
 function handleError(err) {
@@ -87,5 +112,5 @@ function setGeoQuery2(position) {
   } else {
     baseUrl = baseUrl + "&"
   }
-  window.location.replace(baseUrl + `lat=${position[0]}&lon=${position[1]}`);
+  window.location.replace(baseUrl + 'lat=' + position[0] + '&lon=' + position[1]);
 }

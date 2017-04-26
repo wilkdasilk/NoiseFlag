@@ -1,9 +1,11 @@
 <div>
-  <h5>Search for tracks to add</h5>
-  <form class="search-tracks">
-    <input id="search_query" type="text" name="q" placeholder="Search by track name, artist, or album,">
-    <input id="path_input" type="hidden" name="path" value=<%= new_entry_path(flag)  %> >
-    <input type="submit" class="search-tracks-btn" value="Search" ajax-path=<%=api_tracks_path%>>
+  <h3>Search for tracks to add</h3>
+  <form class="search-tracks navbar-form" role="search">
+    <div class="form-group">
+      <input id="search_query" type="text" name="q" placeholder="Search by track name, artist, or album" class="form-control">
+      <input id="path_input" type="hidden" name="path" value=<%= new_entry_path(flag)  %> >
+    </div>
+    <input type="submit" class="search-tracks-btn btn btn-primary btn-cust" value="Search" ajax-path=<%=api_tracks_path%>>
   </form>
   <span id="loading" asset-path="<%= asset_path("loading2.gif") %>"></span>
 </div>

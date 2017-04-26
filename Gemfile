@@ -35,13 +35,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'geocoder'
 gem 'devise'
 gem 'omniauth-spotify'
-gem 'figaro'
-gem 'react_on_rails', '~> 6'
 gem 'searchkick'
 gem 'httparty', '~> 0.13.7'
 gem 'jwt'
 gem 'will_paginate', '~> 3.1.0'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -62,5 +63,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'mini_racer', platforms: :ruby
