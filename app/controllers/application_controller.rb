@@ -38,9 +38,34 @@ class ApplicationController < ActionController::Base
     current_user.active_checkin.inactive! if !!current_user.active_checkin
   end
 
+  def have_valid_spotify_server_token
+    token_stored = ENV['SPOTIFY_SERVER_TOKEN']
+    begin
+      return !!token_stored && JsonWebToken.decode(token_stored)
+    rescue JWT::ExpiredSignature
+      return false
+    end
+  end
+
+  def get_spotify_server_token
+    headers = {
+      'Authorization' => 'Basic ' + Base64.strict_encode64( "#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")
+    }
+    response = HTTParty.post("https://accounts.spotify.com/api/token?grant_type=client_credentials", :headers => headers)
+    return puts(response["error"]) if !!response["error"]
+    token_string = JsonWebToken.encode(response)
+    ENV['SPOTIFY_SERVER_TOKEN'] = token_string
+  end
+
   def search_spotify(spotify_query)
-    response = HTTParty.get("https://api.spotify.com/v1/search?type=track&q=" + spotify_query)
-    return console.log(response["error"]) if !!response["error"]
+    get_spotify_server_token if !have_valid_spotify_server_token
+    encoded_token = ENV['SPOTIFY_SERVER_TOKEN']
+    token = JsonWebToken.decode(encoded_token)
+    headers = {
+      'Authorization' => 'Bearer ' + token[:access_token]
+    }
+    response = HTTParty.get("https://api.spotify.com/v1/search?type=track&q=" + spotify_query, :headers => headers)
+    return puts(response["error"]) if !!response["error"]
     items = response["tracks"]["items"]
     items.each do |item|
       spotify_id = item["id"]
